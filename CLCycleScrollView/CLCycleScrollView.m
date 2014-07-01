@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
+@property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
+
 @end
 
 @implementation CLCycleScrollView
@@ -37,8 +39,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        //===== KVO
-        [self addObserver:self forKeyPath:@"currentIndex" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         
         self.contentViews = [NSMutableArray array];
         self.reusableViewDic = [NSMutableDictionary dictionary];
@@ -49,18 +49,30 @@
         scrollView.backgroundColor = [UIColor orangeColor];
         scrollView.pagingEnabled = YES;
         scrollView.clipsToBounds = NO;
-//        scrollView.showsVerticalScrollIndicator = NO;
-//        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.showsVerticalScrollIndicator = NO;
+        scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.delegate = self;
+        scrollView.contentOffset = CGPointMake(self.width, 0);
         [self addSubview:scrollView];
         self.scrollView = scrollView;
         [scrollView release];
+        
+        //===== TapGesture
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickContentView)];
+        self.tapGesture = tapGesture;
+        [tapGesture release];
     }
     
     return self;
 }
 
 - (void)didMoveToSuperview
+{
+    [self reloadData];
+}
+
+#pragma mark - Methods
+- (void)reloadData
 {
     NSInteger preViewIndex = [self validIndex:self.currentIndex-1];
     NSInteger curViewIndex = [self validIndex:self.currentIndex];
@@ -77,16 +89,7 @@
     NSLog(@"%@", self.reusableViewDic);
     
     //===
-    self.scrollView.contentOffset = CGPointMake(self.width, 0);
-    
-    //===
     [self reLayoutSubviews];
-}
-
-#pragma mark - Methods
-- (void)reloadData
-{
-    
 }
 
 #pragma mark - Private Methods
@@ -129,8 +132,15 @@
     for (int i = 0; i < self.contentViews.count; i++) {
         UIView *view = [self.contentViews objectAtIndex:i];
         view.minX = self.width*i;
+        if (i == 1)
+            [view addGestureRecognizer:self.tapGesture];
         [self.scrollView addSubview:view];
     }
+}
+
+- (void)clickContentView
+{
+    [self.delegate cycleScrollView:self didSelectViewAtIndex:self.currentIndex];
 }
 
 #pragma mark - UIScrollView
@@ -142,6 +152,10 @@
         scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x-self.width, 0);
         self.currentIndex = [self validIndex:self.currentIndex+1];
         
+        //===
+        [self.delegate cycleScrollView:self willShowViewAtIndex:self.currentIndex];
+        
+        //===
         [self addToReusableViews:[self.contentViews objectAtIndex:0]];
         NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:0];
@@ -156,12 +170,17 @@
         
         NSLog(@"%@", self.contentViews);
         
+        //===
         [self reLayoutSubviews];
         
     }else if (willMove == -1) {
         scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x+self.width, 0);
         self.currentIndex = [self validIndex:self.currentIndex-1];
         
+        //===
+        [self.delegate cycleScrollView:self willShowViewAtIndex:self.currentIndex];
+        
+        //===
         [self addToReusableViews:[self.contentViews lastObject]];
         NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:self.contentViews.count-1];
@@ -176,18 +195,8 @@
         
         NSLog(@"%@", self.contentViews);
         
+        //===
         [self reLayoutSubviews];
-    }
-}
-
-#pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"currentIndex"]) {
-        
-        //[self reloadData];
-    }else if ([keyPath isEqualToString:@"contentViews"]) {
-        [self reloadData];
     }
 }
 

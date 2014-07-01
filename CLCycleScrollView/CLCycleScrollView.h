@@ -34,6 +34,8 @@
 @protocol CLCycleScrollViewDelegate <NSObject>
 @optional
 
+- (void)cycleScrollView:(CLCycleScrollView *)scrollView willShowViewAtIndex:(NSInteger)index;
+
 - (void)cycleScrollView:(CLCycleScrollView *)scrollView didSelectViewAtIndex:(NSInteger)index;
 
 @end

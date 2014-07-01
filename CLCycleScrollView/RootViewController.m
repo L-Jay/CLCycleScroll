@@ -9,11 +9,20 @@
 #import "RootViewController.h"
 #import "CLCycleScrollView.h"
 
-@interface RootViewController ()<CLCycleScrollViewDataSource>
+@interface RootViewController ()<CLCycleScrollViewDataSource, CLCycleScrollViewDelegate>
+
+@property (nonatomic, retain) UIPageControl *control;
 
 @end
 
 @implementation RootViewController
+
+- (void)dealloc
+{
+    FNRELEASE(_control);
+    
+    [super dealloc];
+}
 
 - (void)viewDidLoad
 {
@@ -21,11 +30,16 @@
 	
     CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:self.view.bounds];//initWithFrame:CGRectMake(80, 100, 160, 400)];//
     scroll.dataSource = self;
+    scroll.delegate = self;
     [self.view addSubview:scroll];
     [scroll release];
-    
-//    UITableView *tableView;
-//    [tableView dequeueReusableCellWithIdentifier:<#(NSString *)#>]
+        
+    UIPageControl *control = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, scroll.width, 20)];
+    control.maxY = scroll.height - 20;
+    control.numberOfPages = 10;
+    [self.view addSubview:control];
+    self.control = control;
+    [control release];
 }
 
 - (NSInteger)numberOfViewsInCycleScrollView:(CLCycleScrollView *)scrollView
@@ -81,6 +95,16 @@
     }
     
     return contentView;
+}
+
+- (void)cycleScrollView:(CLCycleScrollView *)scrollView willShowViewAtIndex:(NSInteger)index
+{
+    self.control.currentPage = index;
+}
+
+- (void)cycleScrollView:(CLCycleScrollView *)scrollView didSelectViewAtIndex:(NSInteger)index
+{
+    [FNHUD showText:[NSString intString:index]];
 }
 
 @end

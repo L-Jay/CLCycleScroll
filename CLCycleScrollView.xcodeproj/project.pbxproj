@@ -21,6 +21,7 @@
 		0B3D2D34195D69CF00CBD553 /* CLCycleScrollViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D33195D69CF00CBD553 /* CLCycleScrollViewTests.m */; };
 		0B3D2D3F195D69E700CBD553 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D3E195D69E700CBD553 /* RootViewController.m */; };
 		0B3D2D42195D6A0100CBD553 /* CLCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */; };
+		8C72A10519614BC3000DA3D6 /* FNBasicFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		0B3D2D3E195D69E700CBD553 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		0B3D2D40195D6A0100CBD553 /* CLCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCycleScrollView.h; sourceTree = "<group>"; };
 		0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCycleScrollView.m; sourceTree = "<group>"; };
+		0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FNBasicFramework.framework; path = ../FNBasicFramework.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C72A10519614BC3000DA3D6 /* FNBasicFramework.framework in Frameworks */,
 				0B3D2D11195D69CF00CBD553 /* CoreGraphics.framework in Frameworks */,
 				0B3D2D13195D69CF00CBD553 /* UIKit.framework in Frameworks */,
 				0B3D2D0F195D69CF00CBD553 /* Foundation.framework in Frameworks */,
@@ -102,6 +105,7 @@
 		0B3D2D0D195D69CF00CBD553 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */,
 				0B3D2D0E195D69CF00CBD553 /* Foundation.framework */,
 				0B3D2D10195D69CF00CBD553 /* CoreGraphics.framework */,
 				0B3D2D12195D69CF00CBD553 /* UIKit.framework */,
@@ -302,7 +306,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -342,7 +346,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -375,6 +379,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/L/Desktop,
+					/Users/fnk/Desktop,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLCycleScrollView/CLCycleScrollView-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -392,6 +401,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/L/Desktop,
+					/Users/fnk/Desktop,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLCycleScrollView/CLCycleScrollView-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -463,6 +477,7 @@
 				0B3D2D39195D69CF00CBD553 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B3D2D3A195D69CF00CBD553 /* Build configuration list for PBXNativeTarget "CLCycleScrollViewTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +486,7 @@
 				0B3D2D3C195D69CF00CBD553 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

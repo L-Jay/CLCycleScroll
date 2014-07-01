@@ -8,6 +8,40 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CLCycleScrollViewDataSource;
+@protocol CLCycleScrollViewDelegate;
+
+@class CLCycleScrollViewContentView;
+
 @interface CLCycleScrollView : UIView
+
+@property (nonatomic, assign) id <CLCycleScrollViewDataSource> dataSource;
+@property (nonatomic, assign) id <CLCycleScrollViewDelegate> delegate;
+
+- (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
+
+@end
+
+@protocol CLCycleScrollViewDataSource <NSObject>
+@required
+
+- (NSInteger)numberOfViewsInCycleScrollView:(CLCycleScrollView *)scrollView;
+
+- (CLCycleScrollViewContentView *)cycleScrollView:(CLCycleScrollView *)scrollView viewAtIndex:(NSInteger)index;
+
+@end
+
+@protocol CLCycleScrollViewDelegate <NSObject>
+@optional
+
+- (void)cycleScrollView:(CLCycleScrollView *)scrollView didSelectViewAtIndex:(NSInteger)index;
+
+@end
+
+@interface CLCycleScrollViewContentView : UIView
+
+@property (nonatomic, copy, readonly) NSString *identifier;
+
+- (id)initWithFrame:(CGRect)frame identifier:(NSString *)identifier;
 
 @end

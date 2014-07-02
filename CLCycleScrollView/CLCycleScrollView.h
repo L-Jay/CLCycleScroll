@@ -20,6 +20,11 @@
 
 - (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
 
+- (void)reloadData;
+
+- (void)nextPage;
+- (void)prevPage;
+
 @end
 
 @protocol CLCycleScrollViewDataSource <NSObject>

@@ -13,6 +13,10 @@
 
 @property (nonatomic, retain) UIPageControl *control;
 
+@property (nonatomic, retain) UIScrollView *testScroll;
+
+@property (nonatomic, assign) NSInteger testIndex;
+
 @end
 
 @implementation RootViewController
@@ -33,13 +37,57 @@
     scroll.delegate = self;
     [self.view addSubview:scroll];
     [scroll release];
-        
+    
+//    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+//    scroll.contentSize = CGSizeMake(scroll.width*20, 0);
+//    scroll.pagingEnabled = YES;
+//    for (int i = 0; i < 20; i++) {
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(i*scroll.width, 0, scroll.width, scroll.height)];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        label.backgroundColor = [UIColor colorWithRed:arc4random()%10*0.1 green:arc4random()%10*0.1 blue:arc4random()%10*0.1 alpha:1];
+//        label.font = [UIFont boldSystemFontOfSize:50];
+//        label.text = [NSString intString:i];
+//        [scroll addSubview:label];
+//        [label release];
+//    }
+//    
+//    self.testScroll = scroll;
+//    [self.view addSubview:scroll];
+//    [scroll release];
+    
+    
     UIPageControl *control = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, scroll.width, 20)];
     control.maxY = scroll.height - 20;
     control.numberOfPages = 10;
     [self.view addSubview:control];
     self.control = control;
     [control release];
+    
+    UIButton *preBT = [UIButton buttonWithType:UIButtonTypeCustom];
+    preBT.frame = CGRectMake(0, 200, 50, 50);
+    preBT.backgroundColor = [UIColor orangeColor];
+    [preBT addTarget:scroll action:@selector(prevPage) forControlEvents:UIControlEventTouchUpInside];
+    //[preBT addTarget:self action:@selector(test2) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:preBT];
+    
+    UIButton *nexBT = [UIButton buttonWithType:UIButtonTypeCustom];
+    nexBT.frame = CGRectMake(270, 200, 50, 50);
+    nexBT.backgroundColor = [UIColor orangeColor];
+    [nexBT addTarget:scroll action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
+    //[nexBT addTarget:self action:@selector(test1) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nexBT];
+}
+
+- (void)test1
+{
+    self.testIndex++;
+    [self.testScroll setContentOffset:CGPointMake(self.testScroll.width*self.testIndex, 0) animated:YES];
+}
+
+- (void)test2
+{
+    self.testIndex--;
+    [self.testScroll setContentOffset:CGPointMake(self.testScroll.width*self.testIndex, 0) animated:YES];
 }
 
 - (NSInteger)numberOfViewsInCycleScrollView:(CLCycleScrollView *)scrollView
@@ -64,12 +112,10 @@
     if (!contentView) {
         contentView = [[[CLCycleScrollViewContentView alloc] initWithFrame:scrollView.bounds identifier:identifier] autorelease];
         contentView.tag = index;
-        NSLog(@"identifier: %@", contentView.identifier);
+        //NSLog(@"identifier: %@", contentView.identifier);
     }else
         NSLog(@"HAVE=====");
-    
-    NSLog(@"%d", index);
-    
+        
     [contentView removeAllSubviews];
     
     if (index >=0 && index < 3) {

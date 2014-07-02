@@ -74,6 +74,8 @@
 #pragma mark - Methods
 - (void)reloadData
 {
+    [self.contentViews removeAllObjects];
+    
     NSInteger preViewIndex = [self validIndex:self.currentIndex-1];
     NSInteger curViewIndex = [self validIndex:self.currentIndex];
     NSInteger nexViewIndex = [self validIndex:self.currentIndex+1];
@@ -86,10 +88,18 @@
     [self.contentViews addObject:curContentView];
     [self.contentViews addObject:nexContentView];
     
-    NSLog(@"%@", self.reusableViewDic);
-    
     //===
     [self reLayoutSubviews];
+}
+
+- (void)nextPage
+{
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.width*2, 0) animated:YES];
+}
+
+- (void)prevPage
+{
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 #pragma mark - Private Methods
@@ -157,18 +167,15 @@
         
         //===
         [self addToReusableViews:[self.contentViews objectAtIndex:0]];
-        NSLog(@"dic ----- %@", self.reusableViewDic);
+        //NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:0];
         
         NSInteger willAddIndex = [self validIndex:self.currentIndex+1];
-        NSLog(@"will ==== %d", willAddIndex);
         
         CLCycleScrollViewContentView *contentView = [self.dataSource cycleScrollView:self viewAtIndex:willAddIndex];
         [self.contentViews addObject:contentView];
         NSMutableArray *tempArray = [self.reusableViewDic objectForKey:contentView.identifier];
         [tempArray removeObject:contentView];
-        
-        NSLog(@"%@", self.contentViews);
         
         //===
         [self reLayoutSubviews];
@@ -182,22 +189,34 @@
         
         //===
         [self addToReusableViews:[self.contentViews lastObject]];
-        NSLog(@"dic ----- %@", self.reusableViewDic);
+        //NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:self.contentViews.count-1];
         
         NSInteger willAddIndex = [self validIndex:self.currentIndex-1];
-        NSLog(@"will ==== %d", willAddIndex);
         
         CLCycleScrollViewContentView *contentView = [self.dataSource cycleScrollView:self viewAtIndex:willAddIndex];
         [self.contentViews insertObject:contentView atIndex:0];
         NSMutableArray *tempArray = [self.reusableViewDic objectForKey:contentView.identifier];
         [tempArray removeObject:contentView];
         
-        NSLog(@"%@", self.contentViews);
-        
         //===
         [self reLayoutSubviews];
     }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"will begin decelerating");
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"did end decelerating");
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    NSLog(@"did end scrolling");
 }
 
 @end

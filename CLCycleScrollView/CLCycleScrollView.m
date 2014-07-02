@@ -21,6 +21,8 @@
 
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
 
+@property (nonatomic, retain) NSTimer *autoTimer;
+
 @end
 
 @implementation CLCycleScrollView
@@ -31,6 +33,10 @@
     
     FNRELEASE(_contentViews);
     FNRELEASE(_reusableViewDic);
+    
+    FNRELEASE(_tapGesture);
+    
+    FNRELEASE(_autoTimer);
     
     [super dealloc];
 }
@@ -68,6 +74,15 @@
 
 - (void)didMoveToSuperview
 {
+    if (self.autoScrollDuration > 0) {
+        //===== Timer
+        self.autoTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollDuration
+                                                          target:self
+                                                        selector:@selector(nextPage)
+                                                        userInfo:nil
+                                                         repeats:YES];
+    }
+    
     [self reloadData];
 }
 
@@ -153,7 +168,12 @@
     [self.delegate cycleScrollView:self didSelectViewAtIndex:self.currentIndex];
 }
 
-#pragma mark - UIScrollView
+#pragma mark - UIScrollView Delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.autoTimer pauseTimer];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat willMove = round(scrollView.contentOffset.x/self.width)-1;
@@ -204,19 +224,9 @@
     }
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"will begin decelerating");
-}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"did end decelerating");
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    NSLog(@"did end scrolling");
+{    
+    [self.autoTimer resumeTimerAfterTimeInterval:self.autoScrollDuration];
 }
 
 @end
@@ -243,6 +253,28 @@
     }
     
     return self;
+}
+
+@end
+
+@implementation NSTimer (Expand)
+
+-(void)pauseTimer
+{
+    if ([self isValid])
+        [self setFireDate:[NSDate distantFuture]];
+}
+
+-(void)resumeTimer
+{
+    if ([self isValid])
+        [self setFireDate:[NSDate date]];
+}
+
+- (void)resumeTimerAfterTimeInterval:(NSTimeInterval)interval
+{
+    if ([self isValid])
+        [self setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
 }
 
 @end

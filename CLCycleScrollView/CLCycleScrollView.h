@@ -18,6 +18,8 @@
 @property (nonatomic, assign) id <CLCycleScrollViewDataSource> dataSource;
 @property (nonatomic, assign) id <CLCycleScrollViewDelegate> delegate;
 
+@property (nonatomic, assign) NSTimeInterval autoScrollDuration;
+
 - (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
 
 - (void)reloadData;
@@ -50,5 +52,13 @@
 @property (nonatomic, copy, readonly) NSString *identifier;
 
 - (id)initWithFrame:(CGRect)frame identifier:(NSString *)identifier;
+
+@end
+
+@interface NSTimer (Expand)
+
+- (void)pauseTimer;
+- (void)resumeTimer;
+- (void)resumeTimerAfterTimeInterval:(NSTimeInterval)interval;
 
 @end

@@ -159,6 +159,7 @@
     
     for (int i = 0; i < self.contentViews.count; i++) {
         CLCycleScrollViewContentView *view = [self.contentViews objectAtIndex:i];
+        view.cycleScrollView = self;
         
         //====
         if (view.zoomScale > 1.0)
@@ -316,17 +317,15 @@
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
 {
-    NSLog(@"will beign zoom");
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    NSLog(@"did zoom");
+    [self.cycleScrollView.autoTimer pauseTimer];
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
 {
     [scrollView setZoomScale:scale animated:NO];
+    
+    if (scale == 1)
+        [self.cycleScrollView.autoTimer resumeTimerAfterTimeInterval:self.cycleScrollView.autoScrollDuration];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView

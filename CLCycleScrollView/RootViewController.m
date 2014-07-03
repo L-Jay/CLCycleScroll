@@ -35,8 +35,8 @@
     CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:self.view.bounds];//initWithFrame:CGRectMake(80, 100, 160, 400)];//
     scroll.dataSource = self;
     scroll.delegate = self;
-    //scroll.autoScrollDuration = 2.0;
-    //scroll.maxZoomScale = 1.5;
+//    scroll.autoScrollDuration = 2.0;
+//    scroll.maxZoomScale = 1.5;
     [self.view addSubview:scroll];
     [scroll release];
     

@@ -22,6 +22,8 @@
 
 @property (nonatomic, assign) CGFloat maxZoomScale;
 
+@property (nonatomic, retain, readonly) NSTimer *autoTimer;
+
 - (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
 
 - (void)reloadData;
@@ -50,6 +52,8 @@
 @end
 
 @interface CLCycleScrollViewContentView : UIScrollView
+
+@property (nonatomic, assign) CLCycleScrollView *cycleScrollView;
 
 @property (nonatomic, copy, readonly) NSString *identifier;
 

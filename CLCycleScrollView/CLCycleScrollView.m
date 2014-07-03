@@ -282,7 +282,7 @@
         self.minimumZoomScale = 1;
         self.delegate = self;
         
-        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomContentView)];
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomContentView:)];
         doubleTap.numberOfTapsRequired = 2;
         [self addGestureRecognizer:doubleTap];
         self.doubleTapGesture = doubleTap;
@@ -292,10 +292,22 @@
     return self;
 }
 
-- (void)zoomContentView
+- (void)zoomContentView:(UIGestureRecognizer *)gesture
 {
+    CGPoint center = [gesture locationInView:gesture.view];
     CGFloat scale = (self.zoomScale == self.maximumZoomScale) ? self.minimumZoomScale : self.maximumZoomScale;
-    [self setZoomScale:scale animated:YES];
+    CGRect zoomRect = [self zoomRectForScale:scale withCenter:center];
+    [self zoomToRect:zoomRect animated:YES];
+}
+
+- (CGRect)zoomRectForScale:(float)scale withCenter:(CGPoint)center
+{
+    CGRect zoomRect;
+    zoomRect.size.height = self.frame.size.height / scale;
+    zoomRect.size.width  = self.frame.size.width  / scale;
+    zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);
+    zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0);
+    return zoomRect;
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view

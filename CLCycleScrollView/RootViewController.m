@@ -35,7 +35,8 @@
     CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:self.view.bounds];//initWithFrame:CGRectMake(80, 100, 160, 400)];//
     scroll.dataSource = self;
     scroll.delegate = self;
-    scroll.autoScrollDuration = 2.0;
+    //scroll.autoScrollDuration = 2.0;
+    scroll.maxZoomScale = 1.5;
     [self.view addSubview:scroll];
     [scroll release];
     
@@ -109,6 +110,7 @@
     
     
     CLCycleScrollViewContentView *contentView = [scrollView dequeueReusableContentViewWithIdentifier:identifier];
+    contentView.backgroundColor = [UIColor colorWithRed:arc4random()%10*0.1 green:arc4random()%10*0.1 blue:arc4random()%10*0.1 alpha:1];
     
     if (!contentView) {
         contentView = [[[CLCycleScrollViewContentView alloc] initWithFrame:scrollView.bounds identifier:identifier] autorelease];

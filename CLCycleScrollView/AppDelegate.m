@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "TestZoomViewController.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,10 @@
     RootViewController *root = [[RootViewController alloc] init];
     self.window.rootViewController = root;
     [root release];
+    
+//    TestZoomViewController *zoom = [[TestZoomViewController alloc] init];
+//    self.window.rootViewController = zoom;
+//    [zoom release];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

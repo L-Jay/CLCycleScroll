@@ -21,7 +21,9 @@
 		0B3D2D34195D69CF00CBD553 /* CLCycleScrollViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D33195D69CF00CBD553 /* CLCycleScrollViewTests.m */; };
 		0B3D2D3F195D69E700CBD553 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D3E195D69E700CBD553 /* RootViewController.m */; };
 		0B3D2D42195D6A0100CBD553 /* CLCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */; };
+		8C35A6191963F14B0000B235 /* TestZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C35A6181963F14B0000B235 /* TestZoomViewController.m */; };
 		8C72A10519614BC3000DA3D6 /* FNBasicFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */; };
+		8CDC0C7E1965023F0031179D /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0C7D1965023F0031179D /* MyScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,10 @@
 		0B3D2D40195D6A0100CBD553 /* CLCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCycleScrollView.h; sourceTree = "<group>"; };
 		0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCycleScrollView.m; sourceTree = "<group>"; };
 		0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FNBasicFramework.framework; path = ../FNBasicFramework.framework; sourceTree = "<group>"; };
+		8C35A6171963F14B0000B235 /* TestZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestZoomViewController.h; sourceTree = "<group>"; };
+		8C35A6181963F14B0000B235 /* TestZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZoomViewController.m; sourceTree = "<group>"; };
+		8CDC0C7C1965023F0031179D /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
+		8CDC0C7D1965023F0031179D /* MyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 				0B3D2D3E195D69E700CBD553 /* RootViewController.m */,
 				0B3D2D40195D6A0100CBD553 /* CLCycleScrollView.h */,
 				0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */,
+				8C35A6171963F14B0000B235 /* TestZoomViewController.h */,
+				8C35A6181963F14B0000B235 /* TestZoomViewController.m */,
+				8CDC0C7C1965023F0031179D /* MyScrollView.h */,
+				8CDC0C7D1965023F0031179D /* MyScrollView.m */,
 				0B3D2D20195D69CF00CBD553 /* Images.xcassets */,
 				0B3D2D15195D69CF00CBD553 /* Supporting Files */,
 			);
@@ -253,10 +263,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C35A6191963F14B0000B235 /* TestZoomViewController.m in Sources */,
 				0B3D2D1F195D69CF00CBD553 /* AppDelegate.m in Sources */,
 				0B3D2D1B195D69CF00CBD553 /* main.m in Sources */,
 				0B3D2D3F195D69E700CBD553 /* RootViewController.m in Sources */,
 				0B3D2D42195D6A0100CBD553 /* CLCycleScrollView.m in Sources */,
+				8CDC0C7E1965023F0031179D /* MyScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

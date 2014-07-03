@@ -51,20 +51,23 @@
         
         //=====  ScrollView
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        scrollView.tag = 1000;
         scrollView.contentSize = CGSizeMake(self.width*3, 0);
-        scrollView.backgroundColor = [UIColor orangeColor];
+        scrollView.backgroundColor = [UIColor clearColor];
         scrollView.pagingEnabled = YES;
         scrollView.clipsToBounds = NO;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.delegate = self;
         scrollView.contentOffset = CGPointMake(self.width, 0);
+        scrollView.minimumZoomScale = 1.0;
         [self addSubview:scrollView];
         self.scrollView = scrollView;
         [scrollView release];
         
         //===== TapGesture
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickContentView)];
+        tapGesture.numberOfTapsRequired = 1;
         self.tapGesture = tapGesture;
         [tapGesture release];
     }
@@ -155,10 +158,26 @@
     [self.scrollView removeAllSubviews];
     
     for (int i = 0; i < self.contentViews.count; i++) {
-        UIView *view = [self.contentViews objectAtIndex:i];
+        CLCycleScrollViewContentView *view = [self.contentViews objectAtIndex:i];
+        
+        //====
+        if (view.zoomScale > 1.0)
+            [view setZoomScale:1.0 animated:YES];
+        
+        //====
         view.minX = self.width*i;
-        if (i == 1)
+        
+        //====
+        if (i == 1) {
             [view addGestureRecognizer:self.tapGesture];
+            
+            if (self.maxZoomScale > 1.0) {
+                view.maximumZoomScale = self.maxZoomScale;
+                [self.tapGesture requireGestureRecognizerToFail:view.doubleTapGesture];
+            }
+        }
+        
+        //====
         [self.scrollView addSubview:view];
     }
 }
@@ -175,10 +194,12 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+{    
+    //=====
     CGFloat willMove = round(scrollView.contentOffset.x/self.width)-1;
     
     if (willMove == 1) {
+        //====
         scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x-self.width, 0);
         self.currentIndex = [self validIndex:self.currentIndex+1];
         
@@ -231,9 +252,11 @@
 
 @end
 
-@interface CLCycleScrollViewContentView ()
+@interface CLCycleScrollViewContentView () <UIScrollViewDelegate>
 
 @property (nonatomic, copy) NSString *identifier;
+
+@property (nonatomic, retain) UITapGestureRecognizer *doubleTapGesture;
 
 @end
 
@@ -243,6 +266,8 @@
 {
     FNRELEASE(_identifier);
     
+    FNRELEASE(_doubleTapGesture);
+    
     [super dealloc];
 }
 
@@ -250,9 +275,50 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.identifier = identifier;
+        
+        self.backgroundColor = [UIColor blueColor];
+        self.showsHorizontalScrollIndicator = NO;
+        self.showsVerticalScrollIndicator = NO;
+        self.minimumZoomScale = 1;
+        self.delegate = self;
+        
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomContentView)];
+        doubleTap.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:doubleTap];
+        self.doubleTapGesture = doubleTap;
+        [doubleTap release];
     }
     
     return self;
+}
+
+- (void)zoomContentView
+{
+    CGFloat scale = (self.zoomScale == self.maximumZoomScale) ? self.minimumZoomScale : self.maximumZoomScale;
+    [self setZoomScale:scale animated:YES];
+}
+
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
+{
+    NSLog(@"will beign zoom");
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    NSLog(@"did zoom");
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+    [scrollView setZoomScale:scale animated:NO];
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    for (UIView *subView in self.subviews)
+        return subView;
+    
+    return nil;
 }
 
 @end

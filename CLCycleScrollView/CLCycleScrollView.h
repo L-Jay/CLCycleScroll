@@ -20,6 +20,8 @@
 
 @property (nonatomic, assign) NSTimeInterval autoScrollDuration;
 
+@property (nonatomic, assign) CGFloat maxZoomScale;
+
 - (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
 
 - (void)reloadData;
@@ -47,9 +49,11 @@
 
 @end
 
-@interface CLCycleScrollViewContentView : UIView
+@interface CLCycleScrollViewContentView : UIScrollView
 
 @property (nonatomic, copy, readonly) NSString *identifier;
+
+@property (nonatomic, retain, readonly) UITapGestureRecognizer *doubleTapGesture;
 
 - (id)initWithFrame:(CGRect)frame identifier:(NSString *)identifier;
 

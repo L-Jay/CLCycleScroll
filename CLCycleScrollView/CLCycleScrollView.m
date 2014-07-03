@@ -280,6 +280,7 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         self.minimumZoomScale = 1;
+        self.maximumZoomScale = 1;
         self.delegate = self;
         
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomContentView:)];
@@ -294,6 +295,9 @@
 
 - (void)zoomContentView:(UIGestureRecognizer *)gesture
 {
+    if (self.maximumZoomScale == 1)
+        return;
+    
     CGPoint center = [gesture locationInView:gesture.view];
     CGFloat scale = (self.zoomScale == self.maximumZoomScale) ? self.minimumZoomScale : self.maximumZoomScale;
     CGRect zoomRect = [self zoomRectForScale:scale withCenter:center];

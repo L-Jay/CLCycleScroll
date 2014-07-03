@@ -36,7 +36,7 @@
     scroll.dataSource = self;
     scroll.delegate = self;
     //scroll.autoScrollDuration = 2.0;
-    scroll.maxZoomScale = 1.5;
+    //scroll.maxZoomScale = 1.5;
     [self.view addSubview:scroll];
     [scroll release];
     

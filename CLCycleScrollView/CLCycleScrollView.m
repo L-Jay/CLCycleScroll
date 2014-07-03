@@ -45,21 +45,19 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        //===== init data
         self.contentViews = [NSMutableArray array];
         self.reusableViewDic = [NSMutableDictionary dictionary];
+        self.interspaceWidth = 0;
         
         //=====  ScrollView
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        scrollView.tag = 1000;
-        scrollView.contentSize = CGSizeMake(self.width*3, 0);
+        UIScrollView *scrollView = [[UIScrollView alloc] init];
         scrollView.backgroundColor = [UIColor clearColor];
         scrollView.pagingEnabled = YES;
         scrollView.clipsToBounds = NO;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.delegate = self;
-        scrollView.contentOffset = CGPointMake(self.width, 0);
         scrollView.minimumZoomScale = 1.0;
         [self addSubview:scrollView];
         self.scrollView = scrollView;
@@ -77,6 +75,10 @@
 
 - (void)didMoveToSuperview
 {
+    self.scrollView.frame = CGRectMake(0, 0, self.width+self.interspaceWidth, self.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.width*3, 0);
+    self.scrollView.contentOffset = CGPointMake(self.scrollView.width, 0);
+    
     if (self.autoScrollDuration > 0) {
         //===== Timer
         self.autoTimer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollDuration
@@ -166,7 +168,7 @@
             [view setZoomScale:1.0 animated:YES];
         
         //====
-        view.minX = self.width*i;
+        view.minX = self.scrollView.width*i;
         
         //====
         if (i == 1) {
@@ -197,11 +199,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {    
     //=====
-    CGFloat willMove = round(scrollView.contentOffset.x/self.width)-1;
+    CGFloat willMove = round(scrollView.contentOffset.x/scrollView.width)-1;
     
     if (willMove == 1) {
         //====
-        scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x-self.width, 0);
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x - scrollView.width, 0);
         self.currentIndex = [self validIndex:self.currentIndex+1];
         
         //===
@@ -209,7 +211,6 @@
         
         //===
         [self addToReusableViews:[self.contentViews objectAtIndex:0]];
-        //NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:0];
         
         NSInteger willAddIndex = [self validIndex:self.currentIndex+1];
@@ -223,7 +224,7 @@
         [self reLayoutSubviews];
         
     }else if (willMove == -1) {
-        scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x+self.width, 0);
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x + scrollView.width, 0);
         self.currentIndex = [self validIndex:self.currentIndex-1];
         
         //===
@@ -231,7 +232,6 @@
         
         //===
         [self addToReusableViews:[self.contentViews lastObject]];
-        //NSLog(@"dic ----- %@", self.reusableViewDic);
         [self.contentViews removeObjectAtIndex:self.contentViews.count-1];
         
         NSInteger willAddIndex = [self validIndex:self.currentIndex-1];

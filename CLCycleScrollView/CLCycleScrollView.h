@@ -24,6 +24,8 @@
 
 @property (nonatomic, retain, readonly) NSTimer *autoTimer;
 
+@property (nonatomic, assign) CGFloat interspaceWidth;
+
 - (CLCycleScrollViewContentView *)dequeueReusableContentViewWithIdentifier:(NSString *)identifier;
 
 - (void)reloadData;

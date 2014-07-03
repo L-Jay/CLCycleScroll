@@ -31,12 +31,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor brownColor];
 	
-    CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:self.view.bounds];//initWithFrame:CGRectMake(80, 100, 160, 400)];//
+    CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:CGRectMake(80, 100, 160, 400)];//initWithFrame:self.view.bounds];//
     scroll.dataSource = self;
     scroll.delegate = self;
-//    scroll.autoScrollDuration = 2.0;
-//    scroll.maxZoomScale = 1.5;
+    scroll.autoScrollDuration = 2.0;
+    scroll.maxZoomScale = 1.5;
+    scroll.interspaceWidth = 20;
     [self.view addSubview:scroll];
     [scroll release];
     
@@ -58,8 +61,8 @@
 //    [scroll release];
     
     
-    UIPageControl *control = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, scroll.width, 20)];
-    control.maxY = scroll.height - 20;
+    UIPageControl *control = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
+    control.maxY = self.view.height - 20;
     control.numberOfPages = 10;
     [self.view addSubview:control];
     self.control = control;

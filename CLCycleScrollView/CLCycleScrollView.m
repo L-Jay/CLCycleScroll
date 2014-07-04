@@ -114,11 +114,13 @@
 
 - (void)nextPage
 {
+    [self.autoTimer pauseTimer];
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.width*2, 0) animated:YES];
 }
 
 - (void)prevPage
 {
+    [self.autoTimer pauseTimer];
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
@@ -248,6 +250,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {    
+    [self.autoTimer resumeTimerAfterTimeInterval:self.autoScrollDuration];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
     [self.autoTimer resumeTimerAfterTimeInterval:self.autoScrollDuration];
 }
 

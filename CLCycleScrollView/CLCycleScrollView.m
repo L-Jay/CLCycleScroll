@@ -91,6 +91,19 @@
     [self reloadData];
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    if (CGRectEqualToRect(self.bounds, self.superview.bounds))
+        return [super hitTest:point withEvent:event];
+    
+    CGPoint touchPoint = [self convertPoint:point toView:self.superview];
+    CGRect touchScrollRect = CGRectMake(0, self.minY, self.superview.width, self.height);
+    if (CGRectContainsPoint(touchScrollRect, touchPoint))
+        return self.scrollView;
+    
+    return [super hitTest:point withEvent:event];
+}
+
 #pragma mark - Methods
 - (void)reloadData
 {
@@ -284,7 +297,7 @@
     if (self = [super initWithFrame:frame]) {
         self.identifier = identifier;
         
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor clearColor];
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         self.minimumZoomScale = 1;

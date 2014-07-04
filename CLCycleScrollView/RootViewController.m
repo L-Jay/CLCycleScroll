@@ -35,9 +35,10 @@
     self.view.backgroundColor = [UIColor brownColor];
 	
     CLCycleScrollView *scroll = [[CLCycleScrollView alloc] initWithFrame:CGRectMake(80, 100, 160, 400)];//initWithFrame:self.view.bounds];//
+    scroll.backgroundColor = [UIColor yellowColor];
     scroll.dataSource = self;
     scroll.delegate = self;
-    scroll.autoScrollDuration = 2.0;
+    //scroll.autoScrollDuration = 2.0;
     scroll.maxZoomScale = 1.5;
     scroll.interspaceWidth = 20;
     [self.view addSubview:scroll];
@@ -113,14 +114,13 @@
     
     
     CLCycleScrollViewContentView *contentView = [scrollView dequeueReusableContentViewWithIdentifier:identifier];
-    contentView.backgroundColor = [UIColor colorWithRed:arc4random()%10*0.1 green:arc4random()%10*0.1 blue:arc4random()%10*0.1 alpha:1];
+    
     
     if (!contentView) {
         contentView = [[[CLCycleScrollViewContentView alloc] initWithFrame:scrollView.bounds identifier:identifier] autorelease];
         contentView.tag = index;
-        //NSLog(@"identifier: %@", contentView.identifier);
-    }else
-        NSLog(@"HAVE=====");
+        contentView.backgroundColor = [UIColor colorWithRed:arc4random()%10*0.1 green:arc4random()%10*0.1 blue:arc4random()%10*0.1 alpha:1];
+    }
         
     [contentView removeAllSubviews];
     

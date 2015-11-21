@@ -27,7 +27,7 @@
 
 - (void)dealloc
 {
-    FNRELEASE(_views);
+    [_views release];
     
     [super dealloc];
 }

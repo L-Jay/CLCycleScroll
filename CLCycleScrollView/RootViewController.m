@@ -23,7 +23,7 @@
 
 - (void)dealloc
 {
-    FNRELEASE(_control);
+    [_control release];
     
     [super dealloc];
 }
@@ -38,8 +38,8 @@
     scroll.backgroundColor = [UIColor yellowColor];
     scroll.dataSource = self;
     scroll.delegate = self;
-    //scroll.autoScrollDuration = 2.0;
-    scroll.maxZoomScale = 1.5;
+    scroll.autoScrollDuration = 1.0;
+    //scroll.maxZoomScale = 1.5;
     scroll.interspaceWidth = 20;
     [self.view addSubview:scroll];
     [scroll release];
@@ -125,7 +125,7 @@
     [contentView removeAllSubviews];
     
     if (index >=0 && index < 3) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome_%d.png", index]];
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"welcome_%ld.png", (long)index]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
         imgView.frame = scrollView.bounds;
         [contentView addSubview:imgView];
@@ -134,7 +134,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:contentView.bounds];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont boldSystemFontOfSize:50];
-        label.text = [NSString intString:index];
+        label.text = [NSString stringWithFormat:@"%ld", (long)index];
         [contentView addSubview:label];
         [label release];
     }
@@ -156,7 +156,8 @@
 
 - (void)cycleScrollView:(CLCycleScrollView *)scrollView didSelectViewAtIndex:(NSInteger)index
 {
-    [FNHUD showText:[NSString intString:index]];
+    NSLog(@"%ld", (long)index);
+    //[FNHUD showText:[NSString intString:index]];
 }
 
 @end

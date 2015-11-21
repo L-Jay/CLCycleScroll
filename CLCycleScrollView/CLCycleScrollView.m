@@ -29,14 +29,14 @@
 
 - (void)dealloc
 {
-    FNRELEASE(_scrollView);
+    [_scrollView release];
     
-    FNRELEASE(_contentViews);
-    FNRELEASE(_reusableViewDic);
+    [_contentViews release];
+    [_reusableViewDic release];
     
-    FNRELEASE(_tapGesture);
+    [_tapGesture release];
     
-    FNRELEASE(_autoTimer);
+    [_autoTimer release];
     
     [super dealloc];
 }
@@ -97,8 +97,9 @@
         return [super hitTest:point withEvent:event];
     
     CGPoint touchPoint = [self convertPoint:point toView:self.superview];
-    CGRect touchScrollRect = CGRectMake(0, self.minY, self.superview.width, self.height);
-    if (CGRectContainsPoint(touchScrollRect, touchPoint))
+    CGRect touchLeftRect = CGRectMake(0, self.minY, self.minX, self.height);
+    CGRect touchRightRect = CGRectMake(self.maxX, self.minY, self.superview.width-self.maxX, self.height);
+    if (CGRectContainsPoint(touchLeftRect, touchPoint) || CGRectContainsPoint(touchRightRect, touchPoint))
         return self.scrollView;
     
     return [super hitTest:point withEvent:event];
@@ -285,9 +286,9 @@
 
 - (void)dealloc
 {
-    FNRELEASE(_identifier);
+    [_identifier release];
     
-    FNRELEASE(_doubleTapGesture);
+    [_doubleTapGesture release];
     
     [super dealloc];
 }
@@ -354,28 +355,6 @@
         return subView;
     
     return nil;
-}
-
-@end
-
-@implementation NSTimer (Expand)
-
--(void)pauseTimer
-{
-    if ([self isValid])
-        [self setFireDate:[NSDate distantFuture]];
-}
-
--(void)resumeTimer
-{
-    if ([self isValid])
-        [self setFireDate:[NSDate date]];
-}
-
-- (void)resumeTimerAfterTimeInterval:(NSTimeInterval)interval
-{
-    if ([self isValid])
-        [self setFireDate:[NSDate dateWithTimeIntervalSinceNow:interval]];
 }
 
 @end

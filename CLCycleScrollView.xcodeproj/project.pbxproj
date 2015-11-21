@@ -14,15 +14,15 @@
 		0B3D2D1B195D69CF00CBD553 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D1A195D69CF00CBD553 /* main.m */; };
 		0B3D2D1F195D69CF00CBD553 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D1E195D69CF00CBD553 /* AppDelegate.m */; };
 		0B3D2D21195D69CF00CBD553 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B3D2D20195D69CF00CBD553 /* Images.xcassets */; };
-		0B3D2D28195D69CF00CBD553 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3D2D27195D69CF00CBD553 /* XCTest.framework */; };
 		0B3D2D29195D69CF00CBD553 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3D2D0E195D69CF00CBD553 /* Foundation.framework */; };
 		0B3D2D2A195D69CF00CBD553 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3D2D12195D69CF00CBD553 /* UIKit.framework */; };
 		0B3D2D32195D69CF00CBD553 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3D2D30195D69CF00CBD553 /* InfoPlist.strings */; };
 		0B3D2D34195D69CF00CBD553 /* CLCycleScrollViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D33195D69CF00CBD553 /* CLCycleScrollViewTests.m */; };
 		0B3D2D3F195D69E700CBD553 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D3E195D69E700CBD553 /* RootViewController.m */; };
 		0B3D2D42195D6A0100CBD553 /* CLCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */; };
+		0B54B11C1C00E966001FDF27 /* CLUIViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B54B11B1C00E966001FDF27 /* CLUIViewUtils.m */; };
+		0B54B11F1C00EEAE001FDF27 /* TimerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B54B11E1C00EEAE001FDF27 /* TimerUtils.m */; };
 		8C35A6191963F14B0000B235 /* TestZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C35A6181963F14B0000B235 /* TestZoomViewController.m */; };
-		8C72A10519614BC3000DA3D6 /* FNBasicFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */; };
 		8CDC0C7E1965023F0031179D /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC0C7D1965023F0031179D /* MyScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,6 @@
 		0B3D2D1E195D69CF00CBD553 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0B3D2D20195D69CF00CBD553 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0B3D2D26195D69CF00CBD553 /* CLCycleScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLCycleScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B3D2D27195D69CF00CBD553 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0B3D2D2F195D69CF00CBD553 /* CLCycleScrollViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CLCycleScrollViewTests-Info.plist"; sourceTree = "<group>"; };
 		0B3D2D31195D69CF00CBD553 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B3D2D33195D69CF00CBD553 /* CLCycleScrollViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLCycleScrollViewTests.m; sourceTree = "<group>"; };
@@ -57,7 +56,10 @@
 		0B3D2D3E195D69E700CBD553 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		0B3D2D40195D6A0100CBD553 /* CLCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLCycleScrollView.h; sourceTree = "<group>"; };
 		0B3D2D41195D6A0100CBD553 /* CLCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLCycleScrollView.m; sourceTree = "<group>"; };
-		0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FNBasicFramework.framework; path = ../FNBasicFramework.framework; sourceTree = "<group>"; };
+		0B54B11A1C00E966001FDF27 /* CLUIViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUIViewUtils.h; sourceTree = "<group>"; };
+		0B54B11B1C00E966001FDF27 /* CLUIViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUIViewUtils.m; sourceTree = "<group>"; };
+		0B54B11D1C00EEAE001FDF27 /* TimerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerUtils.h; sourceTree = "<group>"; };
+		0B54B11E1C00EEAE001FDF27 /* TimerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerUtils.m; sourceTree = "<group>"; };
 		8C35A6171963F14B0000B235 /* TestZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestZoomViewController.h; sourceTree = "<group>"; };
 		8C35A6181963F14B0000B235 /* TestZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestZoomViewController.m; sourceTree = "<group>"; };
 		8CDC0C7C1965023F0031179D /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
@@ -69,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C72A10519614BC3000DA3D6 /* FNBasicFramework.framework in Frameworks */,
 				0B3D2D11195D69CF00CBD553 /* CoreGraphics.framework in Frameworks */,
 				0B3D2D13195D69CF00CBD553 /* UIKit.framework in Frameworks */,
 				0B3D2D0F195D69CF00CBD553 /* Foundation.framework in Frameworks */,
@@ -80,7 +81,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B3D2D28195D69CF00CBD553 /* XCTest.framework in Frameworks */,
 				0B3D2D2A195D69CF00CBD553 /* UIKit.framework in Frameworks */,
 				0B3D2D29195D69CF00CBD553 /* Foundation.framework in Frameworks */,
 			);
@@ -111,11 +111,9 @@
 		0B3D2D0D195D69CF00CBD553 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0BD965DB195DB11400054FC8 /* FNBasicFramework.framework */,
 				0B3D2D0E195D69CF00CBD553 /* Foundation.framework */,
 				0B3D2D10195D69CF00CBD553 /* CoreGraphics.framework */,
 				0B3D2D12195D69CF00CBD553 /* UIKit.framework */,
-				0B3D2D27195D69CF00CBD553 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,6 +131,10 @@
 				8C35A6181963F14B0000B235 /* TestZoomViewController.m */,
 				8CDC0C7C1965023F0031179D /* MyScrollView.h */,
 				8CDC0C7D1965023F0031179D /* MyScrollView.m */,
+				0B54B11A1C00E966001FDF27 /* CLUIViewUtils.h */,
+				0B54B11B1C00E966001FDF27 /* CLUIViewUtils.m */,
+				0B54B11D1C00EEAE001FDF27 /* TimerUtils.h */,
+				0B54B11E1C00EEAE001FDF27 /* TimerUtils.m */,
 				0B3D2D20195D69CF00CBD553 /* Images.xcassets */,
 				0B3D2D15195D69CF00CBD553 /* Supporting Files */,
 			);
@@ -212,9 +214,12 @@
 		0B3D2D03195D69CF00CBD553 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = L;
 				TargetAttributes = {
+					0B3D2D0A195D69CF00CBD553 = {
+						DevelopmentTeam = UWZNG5P6HM;
+					};
 					0B3D2D25195D69CF00CBD553 = {
 						TestTargetID = 0B3D2D0A195D69CF00CBD553;
 					};
@@ -263,6 +268,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B54B11C1C00E966001FDF27 /* CLUIViewUtils.m in Sources */,
+				0B54B11F1C00EEAE001FDF27 /* TimerUtils.m in Sources */,
 				8C35A6191963F14B0000B235 /* TestZoomViewController.m in Sources */,
 				0B3D2D1F195D69CF00CBD553 /* AppDelegate.m in Sources */,
 				0B3D2D1B195D69CF00CBD553 /* main.m in Sources */,
@@ -314,7 +321,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -354,7 +360,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -387,20 +392,16 @@
 		0B3D2D38195D69CF00CBD553 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/L/Desktop,
-					/Users/fnk/Desktop,
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLCycleScrollView/CLCycleScrollView-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "CLCycleScrollView/CLCycleScrollView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -409,20 +410,16 @@
 		0B3D2D39195D69CF00CBD553 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/L/Desktop,
-					/Users/fnk/Desktop,
-				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLCycleScrollView/CLCycleScrollView-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "CLCycleScrollView/CLCycleScrollView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -431,7 +428,6 @@
 		0B3D2D3B195D69CF00CBD553 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CLCycleScrollView.app/CLCycleScrollView";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -454,7 +450,6 @@
 		0B3D2D3C195D69CF00CBD553 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CLCycleScrollView.app/CLCycleScrollView";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
